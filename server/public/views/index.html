@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script type="text/javascript" src="../vendors/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/client.js"></script>
+    <title>TO DO LIST</title>
+  </head>
+  <body>
+    <h1>TO DO LIST</h1>
+    <form id="taskForm">
+      <input type="text" name="task" id="task" placeholder="Enter Task">
+      <label for="dateAdded">Date Added : </label><input type="date" name="dateAdded" id="dateAdded" placeholder="Date Added">
+      <label for="deadline">Deadline : </label><input type="date" name="deadline" id="deadline" placeholder="Deadline">
+      <label for="priority">Priority? </label><input type="checkbox" name="priority" id="priority">
+      <input type="submit" id="submit" value="submit">
+    </form>
+    <table class="taskDisplay">
+          <tr class="row">
+            <th class="taskName">Task</th>
+            <th class="dateAdded">Date Added</th>
+            <th class="deadline">Deadline</th>
+            <th class="priority">Priority</th>
+            <th class="status">Status</th>
+          </tr>
+    </table>
+  </body>
+</html>
