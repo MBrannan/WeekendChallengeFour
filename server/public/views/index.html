@@ -11,19 +11,11 @@
     <h1>TO DO LIST</h1>
     <form id="taskForm">
       <input type="text" name="task" id="task" placeholder="Enter Task">
-      <label for="dateAdded">Date Added : </label><input type="date" name="dateAdded" id="dateAdded" placeholder="Date Added">
+      <label for="added">Date Added : </label><input type="date" name="added" id="added" placeholder="Date Added">
       <label for="deadline">Deadline : </label><input type="date" name="deadline" id="deadline" placeholder="Deadline">
-      <label for="priority">Priority? </label><input type="checkbox" name="priority" id="priority">
       <input type="submit" id="submit" value="submit">
     </form>
-    <table class="taskDisplay">
-          <tr class="row">
-            <th class="taskName">Task</th>
-            <th class="dateAdded">Date Added</th>
-            <th class="deadline">Deadline</th>
-            <th class="priority">Priority</th>
-            <th class="status">Status</th>
-          </tr>
+    <div id="taskContainer"></div>
     </table>
   </body>
 </html>

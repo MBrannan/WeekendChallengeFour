@@ -11,9 +11,19 @@ $(document).ready(function() {
   $('#submit').on('click', function(event){
     event.preventDefault();
     addTask();
-  });
 });
+  $('#taskContainer').on('click', '.deleteButton', function(event){
+    console.log("click");
+    event.preventDefault();
+    deleteTask();
+});
+  $('.switch').on('click', function(event){
+    console.log("click");
+    event.preventDefault();
+    completeTask();
+  });
 
+});
 
 function getTasks() {
   $.ajax({
@@ -53,18 +63,42 @@ console.log('tasks: ', tasks);
 }
 
 function appendTasks(tasks) {
-  console.log(tasks);
-  $('#taskContainer').empty();
-  var $el = $('#taskContainer').children().last();
+  $("#taskContainer").empty();
   for (var i = 0; i < tasks.length; i++) {
-      var string = '<tr class="taskRow">';
-      string += '<td>' + tasks[i].taskName +'</td>';
-      string += '<td>' + tasks[i].dateAdded +'</td>';
-      string += '<td>' + tasks[i].deadline +'</td>';
-      string += '<td>' + tasks[i].priority +'</td>';
-      string += '<td><button class="btn deleteBtn" data-id=' + tasks.id +'>Delete Task</button></td>';
-      string += toggleBtn + '</td></tr>';
-      // console.log(string);
-      $el.append(string);
+    $("#taskContainer").append("<div class='tasks'></div>");
+    var $el = $("#taskContainer").children().last();
+    $el.append("<h2>" + tasks[i].task + "</h2>");
+    $el.append("<p>" + tasks[i].added + "</p>");
+    $el.append("<p>" + tasks[i].deadline + "</p>");
+    $el.append("<p>" + tasks[i].completion + "</p>");
+    $el.append("<button type='button' class='deleteButton' name='deleteButton'>Delete</button>")
+    $el.append("<p>" + toggleBtn + "</p>");
     }
+}
+
+function deleteTask(task) {
+  var taskid=$(this).parent().data('id');
+    $.ajax({
+        type: 'DELETE',
+        url: '/tasks/delete' + taskid,
+        success: function(result) {
+            getTasks();
+        },
+        error: function(result) {
+            console.log('Unable to delete task:', taskid);
+        }
+    });
+}
+
+function completeTask(task) {
+  $.ajax({
+    type: 'UPDATE',
+    url: '/tasks/completion',
+    success: function(result) {
+      getTasks();
+    },
+    error: function(result) {
+    console.log("Unable to update completion status");
+  }
+});
 }
